@@ -2,8 +2,8 @@ package busbus;
 public class BusVIP extends BusDetail {
     private String vipServices;
 
-    public BusVIP(int totalSeat, String vipServices) {
-        super(totalSeat);
+    public BusVIP(String source, String destination, String busType, int totalSeat, String departureTime, String arrivalTime, double fare, String vipServices) {
+        super(source, destination, busType, totalSeat, departureTime, arrivalTime, fare); // Call the parent class constructor
         this.vipServices = vipServices;
     }
 

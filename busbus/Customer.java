@@ -12,7 +12,6 @@ public class Customer implements Authenticates, Booking {
     protected char gender;
     protected String phoneNumber;
     protected String address;
-    
     private static int customerCount = 0;
     private static ArrayList<Customer> customerList = new ArrayList<>();
     private ArrayList<String> bookingHistory = new ArrayList<>();
@@ -58,7 +57,7 @@ protected int getCustomerID()
     return customerID;
 }
 
-    @Override
+@Override
 public void signUp() {
     Scanner input = new Scanner(System.in);
 
@@ -148,8 +147,9 @@ public void signUp() {
 public boolean login(String email, String password) {
     try {
         for (Customer customer : customerList) {
-            if (customer.email.equals(email) && customer.password.equals(password)) {
-                System.out.println("Login successful for " + email);
+            // Check if the identifier matches either email or username
+            if ((customer.email.equals(email) || customer.username.equals(username)) && customer.password.equals(password)) {
+                System.out.println("Login successful for " + username);
                 return true;
             }
         }
@@ -162,9 +162,6 @@ public boolean login(String email, String password) {
     }
 }
 
-public boolean login(String username, String password) {
-    return this.username.equals(username) && this.password.equals(password);
-}
 
 @Override
 public void BookTicket() {
@@ -217,8 +214,7 @@ public void BookTicket() {
     }
 }
 
-    @Override
-    public boolean CancelBooking(int customerID, int bookingID) {
+public boolean CancelBooking(int customerID, int bookingID) {
         try {
             // Check if the booking ID is valid
             boolean bookingFound = false;
@@ -238,6 +234,7 @@ public void BookTicket() {
         } catch (Exception e) {
             System.out.println("Error: Invalid input. Please enter a valid Booking ID.");
         }
+                return false;
     }
 
     @Override
@@ -289,5 +286,11 @@ public void BookTicket() {
         return customerID == customer.customerID &&
                 Objects.equals(username, customer.username) &&
                 Objects.equals(email, customer.email);
+    }
+
+    @Override
+    public boolean CancelTicket(int BookingID, int CustomerID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'CancelTicket'");
     }
 }

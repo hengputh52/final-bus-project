@@ -4,7 +4,7 @@ package busbus;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BusBooking{
+public class BusBooking implements Booking{
     private static int Booking = 0;  
     private int BookingID;
     private int CustomerID; 
@@ -163,6 +163,13 @@ public void BookTicket() {
         return "BusBooking \nBookingID=" + BookingID + ", \nCustomerID=" + CustomerID + ", \nRouteID="
                 + ", \nPickupStopID=" + PickupStopID + ", \nDropStopID=" + DropStopID + ", \nBookingTime="
                 + "\nTravelDate=" + TravelDate + ", \nReturnDate=" + ReturnDate + ", \nTotal_Seat=" + Total_Seat;
+    }
+
+
+    @Override
+    public void ViewHistory() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'ViewHistory'");
     }
 
     

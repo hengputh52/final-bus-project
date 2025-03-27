@@ -6,11 +6,6 @@ public class Bus {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // Sample bus data
-        new BusDetail("New York", "Washington", "VIP", 40);
-        new BusDetail("Los Angeles", "San Francisco", "Luxury", 35);
-        new BusDetail("Chicago", "Houston", "Economy", 50);
-
         Customer loggedInCustomer = null;
 
         while (true) {
@@ -25,8 +20,8 @@ public class Bus {
 
                 switch (choice) {
                     case 1: // Sign Up
-                        Customer newCustomer = new Customer();
-                        newCustomer.signUp();
+                        // Customer newCustomer = new Customer();
+                        // newCustomer.signUp();
                         break;
 
                     case 2: // Log In
