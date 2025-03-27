@@ -286,7 +286,7 @@ public class BusBookingGUI extends JFrame {
             }
             historyArea.setText(history.toString());
         }
-    }
+    }s
 
     // Handle booking logic
     private void handleBooking() {
