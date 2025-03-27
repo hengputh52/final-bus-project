@@ -63,14 +63,60 @@ public class BusBookingGUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Invalid username or password.");
         });
 
-        // Sign Up Action
+        // Sign-Up Action
         signUpButton.addActionListener(e -> {
-            String username = JOptionPane.showInputDialog("Enter Username:");
-            String password = JOptionPane.showInputDialog("Enter Password:");
-            String email = JOptionPane.showInputDialog("Enter Email:");
-
             try {
-                Customer newCustomer = new Customer(username, 25, 'M', "1234567890", email, "123 Main St", password);
+                String username = JOptionPane.showInputDialog("Enter Username:");
+                if (username == null || username.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Username cannot be empty.");
+                    return;
+                }
+
+                String email = JOptionPane.showInputDialog("Enter Email:");
+                if (email == null || email.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Email cannot be empty.");
+                    return;
+                }
+
+                String password = JOptionPane.showInputDialog("Enter Password:");
+                if (password == null || password.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Password cannot be empty.");
+                    return;
+                }
+
+                String ageStr = JOptionPane.showInputDialog("Enter Age:");
+                int age;
+                try {
+                    age = Integer.parseInt(ageStr);
+                    if (age <= 0) {
+                        JOptionPane.showMessageDialog(null, "Age must be a positive number.");
+                        return;
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid age. Please enter a valid number.");
+                    return;
+                }
+
+                String genderStr = JOptionPane.showInputDialog("Enter Gender (M/F):");
+                char gender = (genderStr != null && !genderStr.trim().isEmpty()) ? genderStr.toUpperCase().charAt(0) : ' ';
+                if (gender != 'M' && gender != 'F') {
+                    JOptionPane.showMessageDialog(null, "Invalid gender. Please enter 'M' or 'F'.");
+                    return;
+                }
+
+                String phone = JOptionPane.showInputDialog("Enter Phone Number:");
+                if (phone == null || phone.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Phone number cannot be empty.");
+                    return;
+                }
+
+                String address = JOptionPane.showInputDialog("Enter Address:");
+                if (address == null || address.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Address cannot be empty.");
+                    return;
+                }
+
+                Customer newCustomer = new Customer(username, age, gender, phone, email, address, password);
                 loggedInCustomer = newCustomer; // Set the logged-in customer
                 JOptionPane.showMessageDialog(null, "Sign-up successful! Welcome, " + username + "!");
                 cardLayout.show(mainPanel, "MainMenuPanel"); // Switch to the main menu panel
@@ -332,6 +378,7 @@ public class BusBookingGUI extends JFrame {
         new BusDetail("New York", "Washington", "VIP", 40, "10:00 AM", "2:00 PM", 50.0);
         new BusDetail("Los Angeles", "San Francisco", "Luxury", 35, "8:00 AM", "12:00 PM", 40.0);
         new BusDetail("Chicago", "Houston", "Economy", 50, "6:00 AM", "4:00 PM", 30.0);
+        
 
         // Launch the GUI
         new BusBookingGUI();
